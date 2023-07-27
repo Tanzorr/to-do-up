@@ -1,12 +1,18 @@
-<h2>To do app</h2>
+<div class="container">
+  <h2>To do app</h2>
+  <input #taskTitle/>
+  <textarea name="" id="" cols="30" rows="10" #taskDescription></textarea>
 
-<input #taskTitle/>
-<textarea name="" id="" cols="30" rows="10" #taskDescription></textarea>
+  <button (click)="addTask({title: taskTitle.value, description: taskDescription.value})">Add</button>
 
-<button (click)="addTask({title: taskTitle.value, description: taskDescription.value})">Add</button>
+  <ul>
+    <li *ngFor="let task of tasks">{{ task.title}}
+      <button (click)="deleteTask(task.id)">Delete</button>
+    </li>
+  </ul>
 
-<ul>
-  <li *ngFor="let task of tasks">{{ task.title}} <button (click)="deleteTask(task.id)">Delete</button></li>
-</ul>
+</div>
+<router-outlet></router-outlet>
+
 
 

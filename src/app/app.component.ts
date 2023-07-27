@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedService } from "./shared.service";
+import { SharedService } from "./libs/shared-api/shared.service";
 import { DocumentData } from "@angular/fire/compat/firestore";
 
 export interface Task {
