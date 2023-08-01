@@ -12,6 +12,9 @@ import { TasksRoutingModule } from "./tasks-routing.module";
   imports: [
     CommonModule,
     TasksRoutingModule
+  ],
+  exports: [
+    TasksComponent
   ]
 })
 export class TasksModule { }

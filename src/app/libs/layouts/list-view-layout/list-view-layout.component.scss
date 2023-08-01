@@ -1,0 +1,15 @@
+$toolbar-container-margin-bottom: 16px;
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.toolbar-container {
+  margin-bottom: $toolbar-container-margin-bottom;
+}
+
+.content-container {
+  min-height: 100%;
+}

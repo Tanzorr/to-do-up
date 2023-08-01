@@ -8,7 +8,7 @@ const routes: Routes = [
     component: ShellComponent,
     children: [
       {
-        path: 'tasks ',
+        path: 'tasks',
         loadChildren: () => import('../pages/tasks/tasks.module').then(m => m.TasksModule),
       }
     ]

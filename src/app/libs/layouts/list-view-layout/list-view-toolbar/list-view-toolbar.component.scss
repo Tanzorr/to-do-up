@@ -1,0 +1,20 @@
+$toolbar-gap: 72px;
+$search-max-width: 600px;
+$actions-gap: 8px;
+
+
+:host {
+  display: flex;
+  align-items: flex-end;
+  gap: $toolbar-gap;
+}
+
+.left-side-content-container {
+  flex: 1;
+}
+
+.actions-container {
+  display: flex;
+  gap: $actions-gap;
+  justify-content: flex-end;
+}

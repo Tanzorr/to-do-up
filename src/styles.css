@@ -1,3 +1,25 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container{
+  height: 100%;
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.row{
+  display: flex;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

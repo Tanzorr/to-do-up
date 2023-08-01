@@ -5,7 +5,13 @@ import { TasksComponent } from "./tasks.component";
 const routes: Routes = [
   {
     path: '',
-    component: TasksComponent
+    component: TasksComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./tasks-page/tasks-page.module').then(m => m.TasksPageModule),
+      }
+    ]
   }
 ];
 

@@ -1,1 +1,22 @@
-<p>task-list works!</p>
+<div class="container">
+  <h2>To do app</h2>
+  <app-one-column-layout>
+
+  </app-one-column-layout>
+  <mat-form-field>
+    <input #taskTitle matNativeControl/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matNativeControl name="" id="" #taskDescription></textarea>
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary"
+          (click)="addTask({ title: taskTitle.value, description: taskDescription.value })">Add
+  </button>
+  <app-task-list-table [tasks]="(tasks$ | async) || []"
+                       (deleteTask)="deleteTask($event)"
+
+  ></app-task-list-table>
+</div>
+
