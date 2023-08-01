@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListViewLayoutComponent } from './list-view-layout.component';
 import { ListViewToolbarComponent } from './list-view-toolbar/list-view-toolbar.component';
 import { ListViewToolbarSearchComponent } from './list-view-toolbar-search/list-view-toolbar-search.component';
+import { ListViewToolbarActionsComponent } from "./list-view-toolbar-actions/list-view-toolbar-actions.component";
 
 
 
@@ -10,12 +11,14 @@ import { ListViewToolbarSearchComponent } from './list-view-toolbar-search/list-
     declarations: [
         ListViewLayoutComponent,
         ListViewToolbarComponent,
-        ListViewToolbarSearchComponent
+        ListViewToolbarSearchComponent,
+        ListViewToolbarActionsComponent
     ],
   exports: [
     ListViewLayoutComponent,
     ListViewToolbarComponent,
-    ListViewToolbarSearchComponent
+    ListViewToolbarSearchComponent,
+    ListViewToolbarActionsComponent
   ],
     imports: [
         CommonModule
