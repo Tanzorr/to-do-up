@@ -8,8 +8,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { Task } from '../shared-api/entitis/Tasks';
-import { Observable } from "rxjs";
-import { TaskListComponent } from "../../pages/tasks/task-list/task-list.component";
+
 
 @Component({
   selector: 'app-task-list-table',

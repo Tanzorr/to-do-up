@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SharedService } from "../../../libs/shared-api/shared.service";
+import { SharedService } from "../../../../libs/shared-api/shared.service";
 import { Observable, of } from "rxjs";
 import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
 

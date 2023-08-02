@@ -7,7 +7,7 @@ const routes: Routes = [
     {
         path: '',
         component: TasksPageComponent,
-        loadChildren: () => import('../task-list/task-list.module').then(m => m.TaskListModule),
+        loadChildren: () => import('./task-list/task-list.module').then(m => m.TaskListModule),
     },
     {
         path: '',
