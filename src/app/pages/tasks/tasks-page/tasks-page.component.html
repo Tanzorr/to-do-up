@@ -1,8 +1,13 @@
-<app-list-view-layout>
-  <app-list-view-toolbar>
-    <app-list-view-toolbar-search></app-list-view-toolbar-search>
-    <app-list-view-toolbar-actions></app-list-view-toolbar-actions>
-  </app-list-view-toolbar>
-  <router-outlet></router-outlet>
-</app-list-view-layout>
+<div class="container">
+  <app-list-view-layout>
+    <app-list-view-toolbar>
+      <app-list-view-toolbar-search></app-list-view-toolbar-search>
+      <app-list-view-toolbar-actions>
+        <button mat-stroked-button color="primary" routerLink="add">add task</button>
+      </app-list-view-toolbar-actions>
+    </app-list-view-toolbar>
+    <router-outlet></router-outlet>
+  </app-list-view-layout>
+</div>
+
 

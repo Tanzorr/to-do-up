@@ -4,20 +4,25 @@ import { TasksPageComponent } from "./tasks-page.component";
 
 
 const routes: Routes = [
-    {
-        path: '',
-        component: TasksPageComponent,
-        loadChildren: () => import('./task-list/task-list.module').then(m => m.TaskListModule),
-    },
-    {
-        path: '',
-        redirectTo: 'list',
-        pathMatch: 'full'
-    }
+  {
+    path: '',
+    component: TasksPageComponent,
+    loadChildren: () => import('./task-list/task-list.module').then(m => m.TaskListModule),
+  },
+  {
+    path: '',
+    redirectTo: 'list',
+    pathMatch: 'full'
+  },
+  {
+    path: 'add',
+    loadChildren: () => import('../add-task-page/add-task-page.module').then(m => m.AddTaskModule)
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class TasksPageRoutingModule {}
+export class TasksPageRoutingModule {
+}

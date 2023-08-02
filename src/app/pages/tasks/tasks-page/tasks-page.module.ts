@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TasksPageComponent } from './tasks-page.component';
 import { TasksPageRoutingModule } from "./tasks-page-routing.module";
 import { ListViewLayoutModule } from "../../../libs/layouts/list-view-layout/list-view-layout.module";
+import { MatButtonModule } from "@angular/material/button";
 
 
 
@@ -13,7 +14,8 @@ import { ListViewLayoutModule } from "../../../libs/layouts/list-view-layout/lis
   imports: [
     CommonModule,
     TasksPageRoutingModule,
-    ListViewLayoutModule
+    ListViewLayoutModule,
+    MatButtonModule
   ]
 })
 export class TasksPageModule { }

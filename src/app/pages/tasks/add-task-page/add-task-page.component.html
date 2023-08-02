@@ -1,1 +1,17 @@
-<p>add-task works!</p>
+<app-one-column-layout>
+  <div class="container">
+    <div class="col">
+      <mat-form-field>
+        <input #taskTitle matNativeControl/>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matNativeControl name="" id="" #taskDescription></textarea>
+      </mat-form-field>
+
+      <button mat-stroked-button color="primary"
+              (click)="addTask({ title: taskTitle.value, description: taskDescription.value })">Add
+      </button>
+    </div>
+  </div>
+</app-one-column-layout>
