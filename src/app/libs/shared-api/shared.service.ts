@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, deleteDoc, doc, Firestore } from "@angular/fire/firestore";
-import { Observable } from "rxjs";
+import { addDoc, getDoc, collection, collectionData, deleteDoc, doc, Firestore } from "@angular/fire/firestore";
+import { Observable, of } from "rxjs";
 import { Task } from "../shared-api/entitis/Tasks";
+import { from } from 'rxjs';
 
 
 @Injectable({
@@ -17,6 +18,15 @@ export class SharedService {
     const tasks = collectionData(tasksCollections, { idField: 'id' });
     return tasks as Observable<Task[]>;
   }
+
+
+  getSingleItem(taskId: string): Observable<Task> {
+    const docRef = getDoc(doc(this._firestore, 'tasks/', taskId));
+    console.log(docRef.then((doc) => { console.log(doc.data()) }));
+
+    return from(docRef.then((doc) => { return doc.data() })) as Observable<Task>;
+  }
+
 
   addTask(task: any) {
     let data =  task ;

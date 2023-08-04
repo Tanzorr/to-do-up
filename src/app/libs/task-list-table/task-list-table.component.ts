@@ -3,9 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
   Output,
-  SimpleChanges
 } from '@angular/core';
 import { Task } from '../shared-api/entitis/Tasks';
 

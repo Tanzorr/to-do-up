@@ -1,0 +1,7 @@
+<p>task-page works!</p>
+<div *ngIf="(task$ | async) as task">
+  <h1>{{ task.title }}</h1>
+  <p>{{ task.description }}</p>
+</div>
+
+

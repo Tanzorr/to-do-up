@@ -10,7 +10,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./tasks-page/tasks-page.module').then(m => m.TasksPageModule),
-      }
+      },
     ]
   }
 ];
