@@ -1,0 +1,82 @@
+@use "sass:map";
+
+$dark-gray: (
+  90: #0F0F1F,
+  50: #3F4752,
+  0: #FFFFFF
+);
+
+$gray: (
+  90: #939EB4,
+  70: #B7BECD,
+  50: #CFD4DE,
+  30: #E7E9EE,
+  10: #F5F6F8
+);
+
+$light-gray: (
+  70: #EAECF4,
+  50: #F1F4FA,
+  10: #FCFCFD
+);
+
+$dark-blue: (
+  70: #1A1C37,
+  50: #262950,
+  30: #34386F,
+);
+
+$blue: (
+  70: #211FAD,
+  50: #3A36DB,
+  30: #295EFF,
+  10: #DCE0FC
+);
+
+$light-blue: (
+  70: #358DC0,
+  50: #469CCD,
+  30: #6FB1D8,
+  10: #D8F0FE
+);
+
+$red: (
+  70: #C31D28,
+  50: #DF2935,
+  30: #E44E58,
+  10: #F2A6AB,
+  5: #FBE4E6
+);
+
+$yellow: (
+  70: #FFC700,
+  50: #FFD747,
+  30: #FFE485,
+  10: #FFF2C2,
+  5: #FFF7DB
+);
+
+$green: (
+  50: #71D08E
+);
+
+$focus: (
+  50: #4789ED
+);
+
+$color-scheme: (
+  "basic": $dark-gray,
+  "background": $light-gray,
+  "neutral": $gray,
+  "primary": $blue,
+  "secondary": $dark-blue,
+  "tertiary": $light-blue,
+  "danger": $red,
+  "warning": $yellow,
+  "success": $green,
+  "focus": $focus
+);
+
+@function color($map, $value, $scheme: $color-scheme) {
+  @return map.get(map.get($scheme, $map), $value);
+}

@@ -1,7 +1,14 @@
 <app-one-column-layout>
   <div class="container">
-    <h1>Add tasks</h1>
     <div class="col">
+      <nav app-breadcrumbs>
+        <a app-breadcrumb *ngFor="let breadcrumb of breadcrumbs"
+           [routerLink]="breadcrumb.path"
+        >
+          {{ breadcrumb.label }}
+        </a>
+      </nav>
+      <h1>Add tasks</h1>
       <mat-form-field class="text-field">
         <input #taskTitle matNativeControl/>
       </mat-form-field>

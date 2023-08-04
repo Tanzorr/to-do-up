@@ -1,0 +1,66 @@
+@use "../../theme";
+
+$selected-color: theme.color("basic", 50);
+$default-color: theme.color("primary", 50);
+$hovered-color: theme.color("primary", 30);
+$active-color: theme.color("primary", 70);
+$focused-color: theme.color("focus", 50);
+
+
+.breadcrumb {
+  @include theme.typography-level("body-2");
+
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+
+  &:link,
+  &:visited {
+    color: $default-color;
+  }
+
+  &:hover {
+    color: $hovered-color
+  }
+
+  &:active {
+    color: $active-color;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  /* stylelint-disable rscss/class-format */
+  &.cdk-focused {
+    &.cdk-keyboard-focused,
+    &.cdk-program-focused {
+      outline: 1px solid $focused-color;
+    }
+  }
+  /* stylelint-enable rscss/class-format */
+
+  &:not(:last-of-type) {
+    position: relative;
+    margin-right: 23px;
+
+    &::after {
+      content: '/';
+      text-decoration: none;
+      color: $selected-color;
+      position: absolute;
+      top: 1px;
+      right: -14px;
+    }
+  }
+
+  &.-active {
+    @include theme.typography-level("button-2");
+    color: $selected-color;
+    text-decoration: none;
+    cursor: default;
+  }
+}

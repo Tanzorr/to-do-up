@@ -1,0 +1,70 @@
+@use "sass:map";
+@use 'sass:list';
+
+
+@function define-typography-level(
+  $font-family: null,
+  $font-size,
+  $line-height: $font-size,
+  $font-weight: 400,
+  $letter-spacing: normal
+) {
+  @return (
+    font-family: $font-family,
+    font-size: $font-size,
+    line-height: $line-height,
+    font-weight: $font-weight,
+    letter-spacing: $letter-spacing
+  );
+}
+
+@function _mat-get-type-value($config, $level, $name) {
+  @return map.get(map.get($config, $level), $name);
+}
+
+@function font-family($config, $level) {
+  @return _mat-get-type-value($config, $level, font-family);
+}
+
+@function font-size($config, $level) {
+  @return _mat-get-type-value($config, $level, font-size);
+}
+
+@function font-weight($config, $level) {
+  @return _mat-get-type-value($config, $level, font-weight);
+}
+
+@function letter-spacing($config, $level) {
+  @return _mat-get-type-value($config, $level, letter-spacing);
+}
+
+@function line-height($config, $level) {
+  @return _mat-get-type-value($config, $level, line-height);
+}
+
+@mixin font-shorthand($font-size, $font-weight, $line-height, $font-family) {
+  // If any of the values are set to `inherit`, we can't use the shorthand
+  // so we fall back to passing in the individual properties.
+  @if ($font-size == inherit or
+       $font-weight == inherit or
+       $line-height == inherit or
+       $font-family == inherit or
+       $font-size == null or
+       $font-weight == null or
+       $line-height == null or
+       $font-family == null)
+  {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    font-family: $font-family;
+  }
+  @else {
+    // Otherwise use the shorthand `font`, because it's the least amount of bytes.
+    font: #{create-font-shorthand($font-weight, $font-size, $line-height, $font-family)};
+  }
+}
+
+@function create-font-shorthand($font-weight, $font-size, $line-height, $font-family) {
+  @return $font-weight list.slash($font-size, $line-height) $font-family;
+}

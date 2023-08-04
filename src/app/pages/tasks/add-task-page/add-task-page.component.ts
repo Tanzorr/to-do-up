@@ -1,6 +1,17 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedService } from "../../../libs/shared-api/shared.service";
 import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
+import { BreadcrumbInterface } from "../../../libs/ui/breadcrub/breadcrumb.interface";
+
+const breadcrumbs: BreadcrumbInterface[] = [
+  {
+    label: 'Tasks',
+    path: '/app/tasks'
+  },
+  {
+    label: 'Add Task',
+  }
+];
 
 @Component({
   selector: 'app-add-task',
@@ -9,6 +20,8 @@ import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddTaskPageComponent {
+  breadcrumbs = breadcrumbs;
+
   constructor(private _sharedService: SharedService) {
   }
 
