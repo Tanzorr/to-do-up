@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TaskPageComponent } from './task-page.component';
 import { TaskPageRoutingModule } from "./task-page-routing.module";
 import { EntityPageLayoutModule } from "../../../libs/layouts/entity-page-layout/entity-page-layout.module";
+import { BreadcrumbModule } from "../../../libs/ui/breadcrub/breadcrumb.module";
 
 
 
@@ -13,7 +14,8 @@ import { EntityPageLayoutModule } from "../../../libs/layouts/entity-page-layout
   imports: [
     CommonModule,
     TaskPageRoutingModule,
-    EntityPageLayoutModule
+    EntityPageLayoutModule,
+    BreadcrumbModule
   ]
 })
 export class TaskPageModule { }

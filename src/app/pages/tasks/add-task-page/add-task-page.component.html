@@ -1,25 +1,26 @@
 <app-one-column-layout>
-  <div class="container">
-    <div class="col">
-      <nav app-breadcrumbs>
-        <a app-breadcrumb *ngFor="let breadcrumb of breadcrumbs"
-           [routerLink]="breadcrumb.path"
-        >
-          {{ breadcrumb.label }}
-        </a>
-      </nav>
+  <app-entity-page-layout>
+    <nav app-breadcrumbs>
+      <a app-breadcrumb *ngFor="let breadcrumb of breadcrumbs"
+         [routerLink]="breadcrumb.path"
+      >
+        {{ breadcrumb.label }}
+      </a>
+    </nav>
+    <app-entity-page-tool-bar>
       <h1>Add tasks</h1>
-      <mat-form-field class="text-field">
-        <input #taskTitle matNativeControl/>
-      </mat-form-field>
+    </app-entity-page-tool-bar>
+    <mat-form-field class="text-field">
+      <input #taskTitle matNativeControl/>
+    </mat-form-field>
 
-      <mat-form-field class="text-field">
-        <textarea matNativeControl name="" id="" #taskDescription></textarea>
-      </mat-form-field>
+    <mat-form-field class="text-field">
+      <textarea matNativeControl name="" id="" #taskDescription></textarea>
+    </mat-form-field>
 
-      <button mat-stroked-button color="primary"
-              (click)="addTask({ title: taskTitle.value, description: taskDescription.value })">Add
-      </button>
-    </div>
-  </div>
+    <button mat-stroked-button color="primary"
+            (click)="addTask({ title: taskTitle.value, description: taskDescription.value })">Add
+    </button>
+
+  </app-entity-page-layout>
 </app-one-column-layout>

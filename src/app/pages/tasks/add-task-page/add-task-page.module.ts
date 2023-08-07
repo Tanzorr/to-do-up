@@ -7,6 +7,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { BreadcrumbModule } from "../../../libs/ui/breadcrub/breadcrumb.module";
+import { EntityPageLayoutModule } from "../../../libs/layouts/entity-page-layout/entity-page-layout.module";
 
 
 
@@ -15,14 +16,15 @@ import { BreadcrumbModule } from "../../../libs/ui/breadcrub/breadcrumb.module";
   declarations: [
     AddTaskPageComponent
   ],
-  imports: [
-    CommonModule,
-    AddTaskPageRoutingModule,
-    OneColumnLayoutComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    BreadcrumbModule
-  ]
+    imports: [
+        CommonModule,
+        AddTaskPageRoutingModule,
+        OneColumnLayoutComponent,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        BreadcrumbModule,
+        EntityPageLayoutModule
+    ]
 })
 export class AddTaskModule { }

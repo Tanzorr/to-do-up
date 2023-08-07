@@ -3,6 +3,18 @@ import { Task } from "../../../libs/shared-api/entitis/Tasks";
 import { SharedService } from "../../../libs/shared-api/shared.service";
 import { Observable } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
+import { BreadcrumbInterface } from "../../../libs/ui/breadcrub/breadcrumb.interface";
+
+
+const breadcrumbs: BreadcrumbInterface[] = [
+  {
+    label: 'Tasks',
+    path: '/app/tasks'
+  },
+  {
+    label: 'Task',
+  }
+];
 
 @Component({
   selector: 'app-task-page',
@@ -10,20 +22,15 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./task-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TaskPageComponent implements OnChanges, OnInit {
+export class TaskPageComponent implements OnInit {
+  breadcrumbs: BreadcrumbInterface[] = breadcrumbs;
   taskID: string = '';
   task$: Observable<Task> | undefined;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _sharedService: SharedService
-  ) {
-
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this._activatedRoute.params.subscribe(params => {
@@ -32,8 +39,6 @@ export class TaskPageComponent implements OnChanges, OnInit {
     if(this.taskID!=='') {
       // @ts-ignore
       this.task$ = this._sharedService.getSingleItem(this.taskID);
-
-      // @ts-ignore
     }
   }
 }
