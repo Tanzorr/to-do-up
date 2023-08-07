@@ -5,7 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { Task } from '../shared-api/entitis/Tasks';
+import { Task } from '../../shared-api/entitis/Tasks';
 
 
 @Component({

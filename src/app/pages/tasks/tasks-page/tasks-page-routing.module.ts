@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: ':id',
     loadChildren: () => import('../task-page/task-page.module').then(m => m.TaskPageModule),
+  },
+  {
+    path: ':id/edit',
+    loadChildren: () => import('../edit-task-page/edit-task-page.module').then(m => m.EditTaskPageModule),
   }
 ];
 

@@ -9,23 +9,12 @@ import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
   styleUrls: ['./task-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent {
   tasks$: Observable<Task[]>;
 
   constructor(private _sharedService: SharedService) {
     this.tasks$ = this._sharedService.getTasks();
   }
-
-
-  ngOnInit() {
-
-  }
-
-  addTask(task: Partial<Task>) {
-    this._sharedService.addTask(task).then(() => {
-    });
-  }
-
   deleteTask(taskId: string) {
     this._sharedService.deleteTask(taskId).then(() => {
       console.log('Task deleted')
