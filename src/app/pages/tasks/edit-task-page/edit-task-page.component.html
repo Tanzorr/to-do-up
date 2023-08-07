@@ -1,1 +1,18 @@
 <p>edit-task-page works!</p>
+<app-one-column-layout>
+  <app-entity-page-layout *ngIf="(task$ | async) as task">
+    <nav>
+      <a app-breadcrumb *ngFor="let breadcrumb of breadcrumbs"
+         [routerLink]="breadcrumb.path"
+      >
+        {{ breadcrumb.label }}
+      </a>
+    </nav>
+    <app-entity-page-tool-bar>
+      <h1 class="title">{{ task?.title }}</h1>
+    </app-entity-page-tool-bar>
+    <app-task-form [task]="task"
+                    (edit)="edit($event)"
+    ></app-task-form>
+  </app-entity-page-layout>
+</app-one-column-layout>
