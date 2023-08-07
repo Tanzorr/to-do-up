@@ -1,0 +1,15 @@
+$breadcrumbs-container-margin-bottom: 16px;
+$toolbar-container-margin-bottom: 32px;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.breadcrumbs-container {
+  margin-bottom: $breadcrumbs-container-margin-bottom;
+}
+
+.toolbar-container {
+  margin-bottom: $toolbar-container-margin-bottom;
+}

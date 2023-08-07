@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskPageComponent } from './task-page.component';
 import { TaskPageRoutingModule } from "./task-page-routing.module";
+import { EntityPageLayoutModule } from "../../../libs/layouts/entity-page-layout/entity-page-layout.module";
 
 
 
@@ -11,7 +12,8 @@ import { TaskPageRoutingModule } from "./task-page-routing.module";
   ],
   imports: [
     CommonModule,
-    TaskPageRoutingModule
+    TaskPageRoutingModule,
+    EntityPageLayoutModule
   ]
 })
 export class TaskPageModule { }
