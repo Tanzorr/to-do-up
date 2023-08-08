@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedService } from "../../../libs/shared-api/shared.service";
 import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
 import { BreadcrumbInterface } from "../../../libs/ui/breadcrub/breadcrumb.interface";
+import { Router } from "@angular/router";
 
 const breadcrumbs: BreadcrumbInterface[] = [
   {
@@ -22,11 +23,17 @@ const breadcrumbs: BreadcrumbInterface[] = [
 export class AddTaskPageComponent {
   breadcrumbs = breadcrumbs;
 
-  constructor(private _sharedService: SharedService) {
+  constructor(private _sharedService: SharedService,
+              private _router: Router) {
   }
 
   addTask(task: Partial<Task>) {
-    this._sharedService.addTask(task).then(() => {
-    });
+    this._sharedService.addTask(task).subscribe(
+      (res) => {
+        if(res.id){
+          this._router.navigate(['/app/tasks', res.id]).then(r => console.log(r));
+        }
+      }
+    );
   }
 }

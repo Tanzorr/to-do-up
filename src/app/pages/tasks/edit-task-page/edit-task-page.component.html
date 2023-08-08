@@ -1,4 +1,3 @@
-<p>edit-task-page works!</p>
 <app-one-column-layout>
   <app-entity-page-layout *ngIf="(task$ | async) as task">
     <nav>
@@ -12,7 +11,7 @@
       <h1 class="title">{{ task?.title }}</h1>
     </app-entity-page-tool-bar>
     <app-task-form [task]="task"
-                    (edit)="edit($event)"
+                   (save)="save($event)"
     ></app-task-form>
   </app-entity-page-layout>
 </app-one-column-layout>

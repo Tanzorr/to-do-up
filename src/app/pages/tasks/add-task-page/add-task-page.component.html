@@ -10,17 +10,8 @@
     <app-entity-page-tool-bar>
       <h1>Add tasks</h1>
     </app-entity-page-tool-bar>
-    <mat-form-field class="text-field">
-      <input #taskTitle matNativeControl/>
-    </mat-form-field>
 
-    <mat-form-field class="text-field">
-      <textarea matNativeControl name="" id="" #taskDescription></textarea>
-    </mat-form-field>
-
-    <button mat-stroked-button color="primary"
-            (click)="addTask({ title: taskTitle.value, description: taskDescription.value })">Add
-    </button>
+    <app-task-form (save)="addTask($event)"></app-task-form>
 
   </app-entity-page-layout>
 </app-one-column-layout>

@@ -26,11 +26,11 @@ export class SharedService {
     return from(docRef.then((doc) => { return doc.data() })) as Observable<Task>;
   }
 
-  updateTask(task: any) {
+  updateTask(task: any): void {
     let data =  task ;
     let docRef = doc(this._firestore, 'tasks/', task.id);
 
-    return updateDoc(docRef, data);
+    updateDoc(docRef, data);
   }
 
 
@@ -38,7 +38,7 @@ export class SharedService {
     let data =  task ;
     let tasksCollections = collection(this._firestore, 'tasks');
 
-    return addDoc(tasksCollections, data);
+    return from(addDoc(tasksCollections, data));
   }
 
   deleteTask(taskId: string) {

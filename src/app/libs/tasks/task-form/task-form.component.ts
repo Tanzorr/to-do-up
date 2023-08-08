@@ -20,7 +20,7 @@ export class TaskFormComponent implements OnChanges {
   form: FormGroup = new FormGroup({});
   @Input() task: Task | null = null;
 
-  @Output() edit: EventEmitter<Task> = new EventEmitter<Task>();
+  @Output() save: EventEmitter<Task> = new EventEmitter<Task>();
 
   constructor(private _formBuilder: FormBuilder) {
     this.form = this._formBuilder.group({
@@ -33,5 +33,16 @@ export class TaskFormComponent implements OnChanges {
     if (this.task) {
       this.form?.patchValue(this.task);
     }
+  }
+
+  submit(): void {
+    if (this.form.valid) {
+      this.save.emit(this.form.value);
+    }
+  }
+
+  cancel(): void {
+    // @ts-ignore
+    this.form?.patchValue(this.task);
   }
 }
