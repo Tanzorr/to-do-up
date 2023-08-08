@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TasksComponent } from './tasks.component';
 import { TasksRoutingModule } from "./tasks-routing.module";
+import { StoreModule } from "@ngrx/store";
+import { tasksReducer } from "./store/tasks-reducer";
 
 
 
@@ -11,7 +13,10 @@ import { TasksRoutingModule } from "./tasks-routing.module";
   ],
   imports: [
     CommonModule,
-    TasksRoutingModule
+    TasksRoutingModule,
+    StoreModule.forRoot({
+      tasks: tasksReducer
+    })
   ],
   exports: [
     TasksComponent
