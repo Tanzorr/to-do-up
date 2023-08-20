@@ -1,7 +1,9 @@
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {getTasks} from "./tasks-actions";
 import {tap} from "rxjs";
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export class TasksEffects {
   tasks = createEffect(()=> this._actions$.pipe(
     ofType(getTasks),

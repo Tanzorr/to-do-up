@@ -6,7 +6,6 @@ import { StoreModule } from "@ngrx/store";
 import { tasksReducer } from "./store/tasks-reducer";
 
 
-
 @NgModule({
   declarations: [
     TasksComponent
@@ -14,9 +13,6 @@ import { tasksReducer } from "./store/tasks-reducer";
   imports: [
     CommonModule,
     TasksRoutingModule,
-    StoreModule.forRoot({
-      tasks: tasksReducer
-    })
   ],
   exports: [
     TasksComponent

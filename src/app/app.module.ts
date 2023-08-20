@@ -1,13 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppComponent} from './app.component';
 
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { SharedService } from "./libs/shared-api/shared.service";
-import { AppRoutingModule } from "./app-routing.module";
-import { firebaseConfig } from "./config/db-config";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {provideFirebaseApp, getApp, initializeApp} from '@angular/fire/app';
+import {getFirestore, provideFirestore} from '@angular/fire/firestore';
+import {SharedService} from "./libs/shared-api/shared.service";
+import {AppRoutingModule} from "./app-routing.module";
+import {firebaseConfig} from "./config/db-config";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {EffectsModule, provideEffects } from "@ngrx/effects";
+import {TasksEffects} from "./pages/tasks/store/tasks.effects";
+import {StoreModule} from "@ngrx/store";
+import {tasksReducer} from "./pages/tasks/store/tasks-reducer";
 
 
 @NgModule({
@@ -21,8 +25,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
+    StoreModule.forRoot({
+      tasks: tasksReducer
+    }),
+    EffectsModule.forRoot([
+      TasksEffects
+    ])
   ],
-  providers: [SharedService]
+  providers: [SharedService],
 })
 export class AppModule {
 }
