@@ -1,4 +1,6 @@
+// @ts-ignore
 import { NgModule } from "@angular/core";
+// @ts-ignore
 import { RouterModule, Routes } from "@angular/router";
 import { ShellComponent } from "./shell.component";
 

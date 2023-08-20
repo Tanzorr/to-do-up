@@ -1,3 +1,6 @@
 @import "app/styles/app";
 @import "app/styles/base";
 @import "app/libs/ui/index";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
