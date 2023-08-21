@@ -2,12 +2,12 @@ import { createReducer, on } from "@ngrx/store";
 import { Task } from "src/app/libs/shared-api/entitis/Tasks";
 import {getTaskFail, getTasks, getTasksSuccess} from "./tasks-actions";
 
-export interface TaskStateModel {
+export interface TasksStateModel {
   tasks: Task[],
   errorMessage: string
 }
 
-const initialState: TaskStateModel = {
+const initialState: TasksStateModel = {
   tasks: [
     {
       id: '1',

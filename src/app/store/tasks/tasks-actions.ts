@@ -2,18 +2,18 @@ import { createAction, props } from "@ngrx/store";
 import { Task } from "../../libs/shared-api/entitis/Tasks";
 
 export const getTasks = createAction(
-  '[Tasks] Get Task',
+  '[Tasks] Get Tasks',
 );
 
 
 export const getTasksSuccess = createAction(
-  '[Tasks] Get Task Success',
+  '[Tasks] Get Tasks Success',
   props<{value: Task[]}>()
 );
 
 
 export const getTaskFail = createAction(
-  '[Tasks] Get Task Fail',
+  '[Tasks] Get Tasks Fail',
   props<{value: string}>()
 );
 
