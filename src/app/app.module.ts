@@ -2,16 +2,17 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 
-import {provideFirebaseApp, getApp, initializeApp} from '@angular/fire/app';
+import {provideFirebaseApp, initializeApp} from '@angular/fire/app';
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {SharedService} from "./libs/shared-api/shared.service";
 import {AppRoutingModule} from "./app-routing.module";
 import {firebaseConfig} from "./config/db-config";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {EffectsModule, provideEffects } from "@ngrx/effects";
+import {EffectsModule} from "@ngrx/effects";
 import {TasksEffects} from "./store/tasks/tasks.effects";
 import {StoreModule} from "@ngrx/store";
 import {tasksReducer} from "./store/tasks/tasks-reducer";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 
 @NgModule({
@@ -26,11 +27,15 @@ import {tasksReducer} from "./store/tasks/tasks-reducer";
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
     StoreModule.forRoot({
-      tasks: tasksReducer
+      tasksState: tasksReducer
     }),
     EffectsModule.forRoot([
       TasksEffects
-    ])
+    ]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: false,
+    }),
   ],
   providers: [SharedService],
 })

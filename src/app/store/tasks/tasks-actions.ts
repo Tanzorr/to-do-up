@@ -3,7 +3,18 @@ import { Task } from "../../libs/shared-api/entitis/Tasks";
 
 export const getTasks = createAction(
   '[Tasks] Get Task',
+);
+
+
+export const getTasksSuccess = createAction(
+  '[Tasks] Get Task Success',
   props<{value: Task[]}>()
+);
+
+
+export const getTaskFail = createAction(
+  '[Tasks] Get Task Fail',
+  props<{value: string}>()
 );
 
 export const getTasksById = createAction(
