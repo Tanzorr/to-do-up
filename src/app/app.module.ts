@@ -9,9 +9,9 @@ import {AppRoutingModule} from "./app-routing.module";
 import {firebaseConfig} from "./config/db-config";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EffectsModule, provideEffects } from "@ngrx/effects";
-import {TasksEffects} from "./pages/tasks/store/tasks.effects";
+import {TasksEffects} from "./store/tasks/tasks.effects";
 import {StoreModule} from "@ngrx/store";
-import {tasksReducer} from "./pages/tasks/store/tasks-reducer";
+import {tasksReducer} from "./store/tasks/tasks-reducer";
 
 
 @NgModule({

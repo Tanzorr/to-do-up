@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from "@ngrx/store";
 import { from, Observable } from "rxjs";
 import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
-import { getTasks } from "./store/tasks-actions";
-import { tasksSelector, tasksSelectorById } from "./store/tasks-selector";
+import { getTasks } from "../../store/tasks/tasks-actions";
+import { tasksSelector, tasksSelectorById } from "../../store/tasks/tasks-selector";
 
 
 @Component({
