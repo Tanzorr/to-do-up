@@ -1,7 +1,7 @@
 <app-entity-page-layout *ngIf="(task$ | async) as task">
   <nav app-breadcrumbs>
-    <a app-breadcrumb *ngFor="let breadcrumb of breadcrumbs"
-       [routerLink]="breadcrumb.path"
+    <a *ngFor="let breadcrumb of breadcrumbs" [routerLink]="breadcrumb.path"
+       app-breadcrumb
     >
       {{ breadcrumb.label }}
     </a>
@@ -11,5 +11,3 @@
   </app-entity-page-tool-bar>
   <p>{{ task.description }}</p>
 </app-entity-page-layout>
-
-

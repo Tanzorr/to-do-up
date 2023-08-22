@@ -1,25 +1,24 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {AppComponent} from './app.component';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { AppComponent } from './app.component'
 
-import {provideFirebaseApp, initializeApp} from '@angular/fire/app';
-import {getFirestore, provideFirestore} from '@angular/fire/firestore';
-import {SharedService} from "./libs/shared-api/shared.service";
-import {AppRoutingModule} from "./app-routing.module";
-import {firebaseConfig} from "./config/db-config";
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {EffectsModule} from "@ngrx/effects";
-import {TasksEffects} from "./store/tasks/tasks.effects";
-import {StoreModule} from "@ngrx/store";
-import {tasksReducer} from "./store/tasks/tasks-reducer";
-import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
+import { getFirestore, provideFirestore } from '@angular/fire/firestore'
+import { SharedService } from './libs/shared-api/shared.service'
+import { AppRoutingModule } from './app-routing.module'
+import { firebaseConfig } from './config/db-config'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { EffectsModule } from '@ngrx/effects'
+import { TasksEffects } from './store/tasks/tasks.effects'
+import { StoreModule } from '@ngrx/store'
+import { tasksReducer } from './store/tasks/tasks-reducer'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { TaskEffects } from './store/tasks/task/task-effects'
+import { taskReducer } from './store/tasks/task/task-reducer'
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -27,11 +26,10 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
     StoreModule.forRoot({
-      tasksState: tasksReducer
+      tasksState: tasksReducer,
+      taskState: taskReducer,
     }),
-    EffectsModule.forRoot([
-      TasksEffects
-    ]),
+    EffectsModule.forRoot([TasksEffects, TaskEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,
@@ -39,5 +37,4 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
   ],
   providers: [SharedService],
 })
-export class AppModule {
-}
+export class AppModule {}
