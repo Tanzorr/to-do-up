@@ -10,7 +10,7 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { from, Observable } from 'rxjs';
-import { Task } from '../shared-api/entitis/Tasks';
+import { Task } from './entitis/Tasks';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +32,7 @@ export class SharedService {
     return from(
       docRef.then((doc) => {
         return doc.data();
-      }),
+      })
     ) as Observable<Task>;
   }
 
@@ -53,7 +53,11 @@ export class SharedService {
   deleteTask(taskId: string) {
     // @ts-ignore
     let docRef = doc(this._firestore, 'tasks/', taskId);
+    console.log(deleteDoc(docRef));
+    return from(deleteDoc(docRef));
+  }
 
-    return deleteDoc(docRef);
+  deleteTask2(taskId: string) {
+    // return this.f2.collection('tasks').doc(taskId).delete();
   }
 }

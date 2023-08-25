@@ -3,6 +3,7 @@ import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
 import {
   addTaskFail,
   addTaskSuccess,
+  deleteTaskSuccess,
   getTaskFail,
   getTasksSuccess,
 } from './tasks-actions';
@@ -35,6 +36,17 @@ export const tasksReducer = createReducer(
 
   on(addTaskSuccess, (state, action) => {
     return { ...state, tasks: [...state.tasks, action.value] };
+  }),
+
+  on(addTaskFail, (state, action) => {
+    return { ...state, errorMessage: action.value };
+  }),
+
+  on(deleteTaskSuccess, (state, action) => {
+    return {
+      ...state,
+      tasks: state.tasks.filter((task) => task.id !== action.value),
+    };
   }),
 
   on(addTaskFail, (state, action) => {

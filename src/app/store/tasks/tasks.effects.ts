@@ -2,11 +2,12 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
   addTask,
   addTaskSuccess,
+  deleteTask,
   getTaskFail,
   getTasks,
   getTasksSuccess,
 } from './tasks-actions';
-import { catchError, switchMap, tap, withLatestFrom } from 'rxjs';
+import { catchError, of, switchMap, tap, withLatestFrom } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { tasksSelector } from './tasks-selector';
@@ -59,6 +60,17 @@ export class TasksEffects {
       dispatch: false,
     }
   );
+
+  // @ts-ignore
+  deleteTask = createEffect(() => {
+    return this._actions$.pipe(
+      ofType(deleteTask),
+      switchMap((taskId) => {
+        this._sharedApiService.deleteTask2(taskId.value);
+        return of(taskId.value);
+      })
+    );
+  });
 
   constructor(
     private _actions$: Actions,

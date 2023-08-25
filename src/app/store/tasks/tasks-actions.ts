@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Task } from '../../libs/shared-api/entitis/Tasks';
+import { Task, TaskId } from '../../libs/shared-api/entitis/Tasks';
 
 export const getTasks = createAction('[Tasks] Get Tasks');
 
@@ -30,5 +30,20 @@ export const addTaskSuccess = createAction(
 
 export const addTaskFail = createAction(
   '[Tasks] Add Task Fail',
+  props<{ value: string }>()
+);
+
+export const deleteTask = createAction(
+  '[Tasks] Delete Task',
+  props<{ value: TaskId }>()
+);
+
+export const deleteTaskSuccess = createAction(
+  '[Tasks] Delete Task Success',
+  props<{ value: TaskId }>()
+);
+
+export const deleteTaskFail = createAction(
+  '[Tasks] Delete Task Fail',
   props<{ value: string }>()
 );
