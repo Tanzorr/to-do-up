@@ -1,5 +1,11 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { getTaskFail, getTasks, getTasksSuccess } from './tasks-actions';
+import {
+  addTask,
+  addTaskSuccess,
+  getTaskFail,
+  getTasks,
+  getTasksSuccess,
+} from './tasks-actions';
 import { catchError, switchMap, tap, withLatestFrom } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -22,18 +28,41 @@ export class TasksEffects {
                 this._store.dispatch(getTaskFail({ value: error }));
                 return error;
               });
-            }),
+            })
           );
-        }),
+        })
       ),
     {
       dispatch: false,
-    },
+    }
+  );
+
+  addTask = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(addTask),
+
+        switchMap((task) => {
+          return this._sharedApiService.addTask(task.value).pipe(
+            tap(() => {
+              this._store.dispatch(addTaskSuccess({ value: task.value }));
+
+              catchError((error) => {
+                this._store.dispatch(getTaskFail({ value: error }));
+                return error;
+              });
+            })
+          );
+        })
+      ),
+    {
+      dispatch: false,
+    }
   );
 
   constructor(
     private _actions$: Actions,
     private _store: Store<{ tasks: Task[] }>,
-    private _sharedApiService: SharedService,
+    private _sharedApiService: SharedService
   ) {}
 }
