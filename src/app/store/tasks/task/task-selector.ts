@@ -1,1 +1,4 @@
-export const taskSelector = (state: any) => state.taskState.task;
+export const taskSelector = (state: any) => {
+  console.log('state', state.taskState);
+  return state.taskState.task;
+};
