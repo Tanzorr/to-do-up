@@ -3,8 +3,9 @@ import {
   addTask,
   addTaskSuccess,
   deleteTask,
-  getTaskFail,
+  deleteTaskSuccess,
   getTasks,
+  getTasksFail,
   getTasksSuccess,
 } from './tasks-actions';
 import { catchError, of, switchMap, tap, withLatestFrom } from 'rxjs';
@@ -26,7 +27,7 @@ export class TasksEffects {
             tap((tasks: Task[]) => {
               this._store.dispatch(getTasksSuccess({ value: tasks }));
               catchError((error) => {
-                this._store.dispatch(getTaskFail({ value: error }));
+                this._store.dispatch(getTasksFail({ value: error }));
                 return error;
               });
             })
@@ -42,14 +43,14 @@ export class TasksEffects {
     () =>
       this._actions$.pipe(
         ofType(addTask),
-
+        // withLatestFrom(this._store.select(tasksSelector)),
         switchMap((task) => {
           return this._sharedApiService.addTask(task.value).pipe(
             tap(() => {
               this._store.dispatch(addTaskSuccess({ value: task.value }));
 
               catchError((error) => {
-                this._store.dispatch(getTaskFail({ value: error }));
+                this._store.dispatch(getTasksFail({ value: error }));
                 return error;
               });
             })
@@ -62,15 +63,40 @@ export class TasksEffects {
   );
 
   // @ts-ignore
-  deleteTask = createEffect(() => {
-    return this._actions$.pipe(
-      ofType(deleteTask),
-      switchMap((taskId) => {
-        this._sharedApiService.deleteTask2(taskId.value);
-        return of(taskId.value);
-      })
-    );
-  });
+  deleteTask = createEffect(
+    () => {
+      return this._actions$.pipe(
+        ofType(deleteTask),
+        switchMap((taskId) => {
+          this._sharedApiService
+            .deleteTask(taskId.value)
+            .then((res) => {
+              console.log(res);
+              this._store.dispatch(deleteTaskSuccess({ value: taskId.value }));
+            })
+            .catch((error) => {
+              this._store.dispatch(getTasksFail({ value: error }));
+              return error;
+            });
+
+          return of(taskId.value);
+          //   .pipe(
+          //   tap(() => {
+          //     this._store.dispatch(deleteTaskSuccess({ value: taskId.value }));
+          //
+          //     catchError((error) => {
+          //       this._store.dispatch(getTaskFail({ value: error }));
+          //       return error;
+          //     });
+          //   })
+          // );
+        })
+      );
+    },
+    {
+      dispatch: false,
+    }
+  );
 
   constructor(
     private _actions$: Actions,

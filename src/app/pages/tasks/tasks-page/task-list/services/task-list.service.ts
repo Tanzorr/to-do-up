@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { deleteTask, getTasks } from 'src/app/store/tasks/tasks-actions';
 import { tasksSelector } from '../../../../../store/tasks/tasks-selector';
 
@@ -17,6 +17,6 @@ export class TaskListService {
   }
 
   deleteTask(taskId: string): void {
-    this._store.dispatch(deleteTask({ value: taskId }));
+    this._store.dispatch<Action>(deleteTask({ value: taskId }));
   }
 }

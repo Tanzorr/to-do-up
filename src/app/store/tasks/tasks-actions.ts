@@ -8,7 +8,7 @@ export const getTasksSuccess = createAction(
   props<{ value: Task[] }>()
 );
 
-export const getTaskFail = createAction(
+export const getTasksFail = createAction(
   '[Tasks] Get Tasks Fail',
   props<{ value: string }>()
 );
@@ -35,7 +35,7 @@ export const addTaskFail = createAction(
 
 export const deleteTask = createAction(
   '[Tasks] Delete Task',
-  props<{ value: TaskId }>()
+  props<{ value: string }>()
 );
 
 export const deleteTaskSuccess = createAction(

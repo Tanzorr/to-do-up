@@ -53,11 +53,6 @@ export class SharedService {
   deleteTask(taskId: string) {
     // @ts-ignore
     let docRef = doc(this._firestore, 'tasks/', taskId);
-    console.log(deleteDoc(docRef));
-    return from(deleteDoc(docRef));
-  }
-
-  deleteTask2(taskId: string) {
-    // return this.f2.collection('tasks').doc(taskId).delete();
+    return deleteDoc(docRef);
   }
 }

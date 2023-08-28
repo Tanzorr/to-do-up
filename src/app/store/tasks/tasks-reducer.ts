@@ -4,7 +4,7 @@ import {
   addTaskFail,
   addTaskSuccess,
   deleteTaskSuccess,
-  getTaskFail,
+  getTasksFail,
   getTasksSuccess,
 } from './tasks-actions';
 
@@ -30,7 +30,7 @@ export const tasksReducer = createReducer(
     return { ...state, tasks: [...state.tasks, ...action.value] };
   }),
 
-  on(getTaskFail, (state, action) => {
+  on(getTasksFail, (state, action) => {
     return { ...state, errorMessage: action.value };
   }),
 
