@@ -1,10 +1,16 @@
-import { createReducer, on } from "@ngrx/store";
-import { Task } from "src/app/libs/shared-api/entitis/Tasks";
-import {getTaskFail, getTasks, getTasksSuccess} from "./tasks-actions";
+import { createReducer, on } from '@ngrx/store';
+import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
+import {
+  addTaskFail,
+  addTaskSuccess,
+  deleteTaskSuccess,
+  getTasksFail,
+  getTasksSuccess,
+} from './tasks-actions';
 
 export interface TasksStateModel {
-  tasks: Task[],
-  errorMessage: string
+  tasks: Task[];
+  errorMessage: string;
 }
 
 const initialState: TasksStateModel = {
@@ -13,20 +19,37 @@ const initialState: TasksStateModel = {
       id: '1',
       title: 'Task 1',
       description: 'Description 1',
-    }
+    },
   ],
-  errorMessage: ''
-}
+  errorMessage: '',
+};
 
-
-export  const tasksReducer = createReducer(
+export const tasksReducer = createReducer(
   initialState,
   on(getTasksSuccess, (state, action) => {
-    return {...state, tasks: [ ...state.tasks, ...action.value] }
+    return { ...state, tasks: [...state.tasks, ...action.value] };
   }),
 
-  on(getTaskFail, (state, action) => {
-    return {...state, errorMessage: action.value }
+  on(getTasksFail, (state, action) => {
+    return { ...state, errorMessage: action.value };
+  }),
+
+  on(addTaskSuccess, (state, action) => {
+    return { ...state, tasks: [...state.tasks, action.value] };
+  }),
+
+  on(addTaskFail, (state, action) => {
+    return { ...state, errorMessage: action.value };
+  }),
+
+  on(deleteTaskSuccess, (state, action) => {
+    return {
+      ...state,
+      tasks: state.tasks.filter((task) => task.id !== action.value),
+    };
+  }),
+
+  on(addTaskFail, (state, action) => {
+    return { ...state, errorMessage: action.value };
   })
 );
-
