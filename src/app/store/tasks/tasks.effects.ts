@@ -1,6 +1,14 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { getTaskFail, getTasks, getTasksSuccess } from './tasks-actions';
-import { catchError, switchMap, tap, withLatestFrom } from 'rxjs';
+import {
+  addTask,
+  addTaskSuccess,
+  deleteTask,
+  deleteTaskSuccess,
+  getTasks,
+  getTasksFail,
+  getTasksSuccess,
+} from './tasks-actions';
+import { catchError, of, switchMap, tap, withLatestFrom } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { tasksSelector } from './tasks-selector';
@@ -19,21 +27,80 @@ export class TasksEffects {
             tap((tasks: Task[]) => {
               this._store.dispatch(getTasksSuccess({ value: tasks }));
               catchError((error) => {
-                this._store.dispatch(getTaskFail({ value: error }));
+                this._store.dispatch(getTasksFail({ value: error }));
                 return error;
               });
-            }),
+            })
           );
-        }),
+        })
       ),
     {
       dispatch: false,
+    }
+  );
+
+  addTask = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(addTask),
+        // withLatestFrom(this._store.select(tasksSelector)),
+        switchMap((task) => {
+          return this._sharedApiService.addTask(task.value).pipe(
+            tap(() => {
+              this._store.dispatch(addTaskSuccess({ value: task.value }));
+
+              catchError((error) => {
+                this._store.dispatch(getTasksFail({ value: error }));
+                return error;
+              });
+            })
+          );
+        })
+      ),
+    {
+      dispatch: false,
+    }
+  );
+
+  // @ts-ignore
+  deleteTask = createEffect(
+    () => {
+      return this._actions$.pipe(
+        ofType(deleteTask),
+        switchMap((taskId) => {
+          this._sharedApiService
+            .deleteTask(taskId.value)
+            .then((res) => {
+              console.log(res);
+              this._store.dispatch(deleteTaskSuccess({ value: taskId.value }));
+            })
+            .catch((error) => {
+              this._store.dispatch(getTasksFail({ value: error }));
+              return error;
+            });
+
+          return of(taskId.value);
+          //   .pipe(
+          //   tap(() => {
+          //     this._store.dispatch(deleteTaskSuccess({ value: taskId.value }));
+          //
+          //     catchError((error) => {
+          //       this._store.dispatch(getTaskFail({ value: error }));
+          //       return error;
+          //     });
+          //   })
+          // );
+        })
+      );
     },
+    {
+      dispatch: false,
+    }
   );
 
   constructor(
     private _actions$: Actions,
     private _store: Store<{ tasks: Task[] }>,
-    private _sharedApiService: SharedService,
+    private _sharedApiService: SharedService
   ) {}
 }

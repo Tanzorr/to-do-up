@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { SharedService } from '../../../../libs/shared-api/shared.service'
-import { Observable } from 'rxjs'
-import { TaskListService } from './services/task-list.service'
-import { Task } from 'src/app/libs/shared-api/entitis/Tasks'
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SharedService } from '../../../../libs/shared-api/shared.service';
+import { Observable } from 'rxjs';
+import { TaskListService } from './services/task-list.service';
+import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
 
 @Component({
   selector: 'app-task-list',
@@ -11,19 +11,20 @@ import { Task } from 'src/app/libs/shared-api/entitis/Tasks'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskListComponent {
-  tasks$: Observable<Task[]>
+  tasks$: Observable<Task[]>;
 
   constructor(
     private _sharedService: SharedService,
     private _taskService: TaskListService
   ) {
-    this._taskService.getTasks()
-    this.tasks$ = this._taskService.tasks$
+    this._taskService.getTasks();
+    this.tasks$ = this._taskService.tasks$;
   }
 
   deleteTask(taskId: string) {
-    this._sharedService.deleteTask(taskId).then(() => {
-      console.log('Task deleted')
-    })
+    this._taskService.deleteTask(taskId);
+    // this._sharedService.deleteTask(taskId).then(() => {
+    //   console.log('Task deleted')
+    // })
   }
 }
