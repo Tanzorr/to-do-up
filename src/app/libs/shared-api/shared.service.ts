@@ -36,11 +36,19 @@ export class SharedService {
     ) as Observable<Task>;
   }
 
-  updateTask(task: any): void {
+  updateTask(task: Task) {
     let data = task;
     let docRef = doc(this._firestore, 'tasks/', task.id);
 
-    updateDoc(docRef, data);
+    return from(
+      updateDoc<unknown>(docRef, task)
+        .then(() => {
+          return task;
+        })
+        .catch((error) => {
+          return error;
+        })
+    );
   }
 
   addTask(task: any) {

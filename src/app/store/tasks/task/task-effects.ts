@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { SharedService } from '../../../libs/shared-api/shared.service';
-import { getTask, getTaskSuccess } from './task-actions';
-import { switchMap, tap } from 'rxjs';
+import {
+  getTask,
+  getTaskFail,
+  getTaskSuccess,
+  updateTask,
+} from './task-actions';
+import { catchError, switchMap, tap } from 'rxjs';
 import { Task } from '../../../libs/shared-api/entitis/Tasks';
 import { Store } from '@ngrx/store';
 
@@ -16,6 +21,35 @@ export class TaskEffects {
           return this._sharedApiService.getSingleItem(action.taskId).pipe(
             tap((task: Task) => {
               this._store.dispatch(getTaskSuccess({ value: task }));
+
+              catchError((error) => {
+                this._store.dispatch(getTaskFail({ value: error }));
+
+                return error;
+              });
+            })
+          );
+        })
+      ),
+    {
+      dispatch: false,
+    }
+  );
+
+  updateTask = createEffect(
+    () =>
+      this._actions$.pipe(
+        ofType(updateTask),
+        switchMap((action: any) => {
+          return this._sharedApiService.updateTask(action.value).pipe(
+            tap((task: Task) => {
+              this._store.dispatch(getTaskSuccess({ value: task }));
+
+              catchError((error) => {
+                this._store.dispatch(getTaskFail({ value: error }));
+
+                return error;
+              });
             })
           );
         })

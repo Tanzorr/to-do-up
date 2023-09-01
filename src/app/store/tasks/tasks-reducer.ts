@@ -14,20 +14,14 @@ export interface TasksStateModel {
 }
 
 const initialState: TasksStateModel = {
-  tasks: [
-    {
-      id: '1',
-      title: 'Task 1',
-      description: 'Description 1',
-    },
-  ],
+  tasks: [],
   errorMessage: '',
 };
 
 export const tasksReducer = createReducer(
   initialState,
   on(getTasksSuccess, (state, action) => {
-    return { ...state, tasks: [...state.tasks, ...action.value] };
+    return { ...state, tasks: action.value };
   }),
 
   on(getTasksFail, (state, action) => {

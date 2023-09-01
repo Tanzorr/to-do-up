@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 import { tasksSelector } from './tasks-selector';
 import { Task } from '../../libs/shared-api/entitis/Tasks';
 import { SharedService } from '../../libs/shared-api/shared.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TasksEffects {
@@ -48,9 +49,11 @@ export class TasksEffects {
           return this._sharedApiService.addTask(task.value).pipe(
             tap(() => {
               this._store.dispatch(addTaskSuccess({ value: task.value }));
+              this._router.navigate(['app/tasks']);
 
               catchError((error) => {
                 this._store.dispatch(getTasksFail({ value: error }));
+
                 return error;
               });
             })
@@ -80,16 +83,6 @@ export class TasksEffects {
             });
 
           return of(taskId.value);
-          //   .pipe(
-          //   tap(() => {
-          //     this._store.dispatch(deleteTaskSuccess({ value: taskId.value }));
-          //
-          //     catchError((error) => {
-          //       this._store.dispatch(getTaskFail({ value: error }));
-          //       return error;
-          //     });
-          //   })
-          // );
         })
       );
     },
@@ -101,6 +94,7 @@ export class TasksEffects {
   constructor(
     private _actions$: Actions,
     private _store: Store<{ tasks: Task[] }>,
-    private _sharedApiService: SharedService
+    private _sharedApiService: SharedService,
+    private _router: Router
   ) {}
 }

@@ -1,6 +1,11 @@
 import { Task } from 'src/app/libs/shared-api/entitis/Tasks';
 import { createReducer, on } from '@ngrx/store';
-import { getTaskFail, getTaskSuccess } from './task-actions';
+import {
+  getTaskFail,
+  getTaskSuccess,
+  updateTaskFail,
+  updateTaskSuccess,
+} from './task-actions';
 
 export interface TaskStateModel {
   task: Task;
@@ -24,6 +29,14 @@ export const taskReducer = createReducer(
   }),
 
   on(getTaskFail, (state, action) => {
+    return { ...state, errorMessage: action.value };
+  }),
+
+  on(updateTaskSuccess, (state, action) => {
+    return { ...state, task: action.value };
+  }),
+
+  on(updateTaskFail, (state, action) => {
     return { ...state, errorMessage: action.value };
   })
 );
