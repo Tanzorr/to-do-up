@@ -28,7 +28,7 @@ export class TaskPageComponent implements OnInit {
   constructor(private _taskService: TaskPageService) {}
 
   ngOnInit(): void {
-    this._taskService.getTask(this.taskID);
+    this._taskService.getTask();
     this.task$ = this._taskService.task$;
   }
 }

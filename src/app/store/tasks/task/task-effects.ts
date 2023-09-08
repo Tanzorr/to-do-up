@@ -42,8 +42,16 @@ export class TaskEffects {
     () =>
       this._actions$.pipe(
         ofType(updateTask),
-        switchMap((action: any) => {
-          return this._sharedApiService.updateTask(action.value).pipe(
+        withLatestFrom(this._store.select(getCurrentRouteId)),
+        switchMap(([action, taskId]) => {
+          const { title, description } = action.value;
+          const task = {
+            title,
+            description,
+            id: taskId,
+          };
+
+          return this._sharedApiService.updateTask(task).pipe(
             tap((task: Task) => {
               this._store.dispatch(getTaskSuccess({ value: task }));
 
