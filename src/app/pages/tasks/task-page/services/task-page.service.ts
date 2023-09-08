@@ -13,6 +13,6 @@ export class TaskPageService {
   constructor(private _store: Store<{ task: Task }>) {}
 
   getTask(taskId: string): void {
-    this._store.dispatch(getTask({ taskId }));
+    this._store.dispatch(getTask());
   }
 }

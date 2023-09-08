@@ -7,7 +7,7 @@ export interface RouterStateUrl {
   queryParams: Params;
 }
 
-export class TasksSerializer extends RouterStateSerializer<RouterStateUrl> {
+export class CustomSerializer extends RouterStateSerializer<RouterStateUrl> {
   serialize(routerState: RouterStateSnapshot): RouterStateUrl {
     let route = routerState.root;
 

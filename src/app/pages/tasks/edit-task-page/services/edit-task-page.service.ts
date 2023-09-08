@@ -12,8 +12,8 @@ export class EditTaskPageService {
 
   constructor(private _store: Store<{ task: Task }>) {}
 
-  getTask(taskId: string): void {
-    this._store.dispatch(getTask({ taskId }));
+  getTask(): void {
+    this._store.dispatch(getTask());
   }
 
   updateTask(task: Task): void {

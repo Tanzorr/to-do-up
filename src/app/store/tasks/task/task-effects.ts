@@ -7,9 +7,10 @@ import {
   getTaskSuccess,
   updateTask,
 } from './task-actions';
-import { catchError, switchMap, tap } from 'rxjs';
+import { catchError, switchMap, tap, withLatestFrom } from 'rxjs';
 import { Task } from '../../../libs/shared-api/entitis/Tasks';
 import { Store } from '@ngrx/store';
+import { getCurrentRouteId } from '../../route/selectors';
 
 @Injectable()
 export class TaskEffects {
@@ -17,8 +18,9 @@ export class TaskEffects {
     () =>
       this._actions$.pipe(
         ofType(getTask),
-        switchMap((action: any) => {
-          return this._sharedApiService.getSingleItem(action.taskId).pipe(
+        withLatestFrom(this._store.select(getCurrentRouteId)),
+        switchMap(([action, taskId]) => {
+          return this._sharedApiService.getSingleItem(taskId).pipe(
             tap((task: Task) => {
               this._store.dispatch(getTaskSuccess({ value: task }));
 

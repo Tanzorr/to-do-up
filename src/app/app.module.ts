@@ -16,7 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TaskEffects } from './store/tasks/task/task-effects';
 import { taskReducer } from './store/tasks/task/task-reducer';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
-import { TasksSerializer } from './store/tasks/TasksSerializer';
+import { CustomSerializer } from './store/route/custom-serializer';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -34,7 +34,7 @@ import { TasksSerializer } from './store/tasks/TasksSerializer';
     }),
     EffectsModule.forRoot([TasksEffects, TaskEffects]),
     StoreRouterConnectingModule.forRoot({
-      serializer: TasksSerializer,
+      serializer: CustomSerializer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

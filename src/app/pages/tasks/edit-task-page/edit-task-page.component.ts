@@ -41,6 +41,8 @@ export class EditTaskPageComponent implements OnInit {
       // @ts-ignore
       this.task$ = this._sharedService.getSingleItem(this.taskID);
     }
+
+    this._editTaskPageService.getTask();
   }
 
   save(task: Task): void {
