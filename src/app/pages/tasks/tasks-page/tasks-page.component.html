@@ -1,9 +1,13 @@
 <h1>Tasks</h1>
 <app-list-view-layout>
   <app-list-view-toolbar>
-    <app-list-view-toolbar-search></app-list-view-toolbar-search>
+    <app-list-view-toolbar-search>
+      <app-search-bar (ngModelChange)="onSearch($event)"
+                      [ngModel]="search$ | async"
+      ></app-search-bar>
+    </app-list-view-toolbar-search>
     <app-list-view-toolbar-actions>
-      <button mat-stroked-button color="primary" routerLink="add">add task</button>
+      <button color="primary" mat-stroked-button routerLink="add">add task</button>
     </app-list-view-toolbar-actions>
   </app-list-view-toolbar>
   <router-outlet></router-outlet>
