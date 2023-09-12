@@ -5,6 +5,8 @@ import {
   OnInit,
 } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { TasksPageService } from './services/tasks-page.service';
+import { FormControlName } from '@angular/forms';
 
 @Component({
   selector: 'app-tasks-page',
@@ -14,9 +16,10 @@ import { Observable, Subject } from 'rxjs';
 })
 export class TasksPageComponent implements OnInit, OnDestroy {
   search$: Observable<string> | undefined;
+  searchControlName: FormControlName | undefined;
   private _destroyedSubject = new Subject<void>();
 
-  constructor() {}
+  constructor(private _tasksPageService: TasksPageService) {}
 
   ngOnInit(): void {}
 
@@ -26,6 +29,6 @@ export class TasksPageComponent implements OnInit, OnDestroy {
   }
 
   onSearch(search: string): void {
-    console.log('search', search);
+    this._tasksPageService.search(search);
   }
 }

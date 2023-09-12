@@ -6,7 +6,7 @@ import { ListViewLayoutModule } from '../../../libs/layouts/list-view-layout/lis
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { SearchBarModule } from '../../../libs/ui/search-bar/search-bar.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [TasksPageComponent],
@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     SearchBarModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class TasksPageModule {}

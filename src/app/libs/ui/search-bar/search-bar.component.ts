@@ -9,7 +9,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
-import { ControlValueAccessor, NG_VALIDATORS } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
@@ -18,7 +18,7 @@ import { ControlValueAccessor, NG_VALIDATORS } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
-      provide: NG_VALIDATORS,
+      provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SearchBarComponent),
       multi: true,
     },

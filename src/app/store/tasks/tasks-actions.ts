@@ -47,3 +47,33 @@ export const deleteTaskFail = createAction(
   '[Tasks] Delete Task Fail',
   props<{ value: string }>()
 );
+
+export const setSearch = createAction(
+  '[Tasks] Set Search',
+  props<{ value: string }>()
+);
+
+export const setSearchSuccess = createAction(
+  '[Tasks] Set Search Success',
+  props<{ value: string }>()
+);
+
+export const setSearchFail = createAction(
+  '[Tasks] Set Search Fail',
+  props<{ value: string }>()
+);
+
+export const setFilter = createAction(
+  '[Tasks] Set Filter',
+  props<{ value: string }>()
+);
+
+export const setFilterSuccess = createAction(
+  '[Tasks] Set Filter Success',
+  props<{ value: string }>()
+);
+
+export const setFilterFail = createAction(
+  '[Tasks] Set Filter Fail',
+  props<{ value: string }>()
+);

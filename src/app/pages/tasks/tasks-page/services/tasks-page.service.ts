@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TasksPageService {
+  constructor() {}
 
-  constructor() { }
+  search(search: string): void {
+    console.log('search', search);
+  }
 }
