@@ -8,3 +8,11 @@ export const getRouterState =
 export const getCurrentRouteId = createSelector(getRouterState, (router) => {
   return router?.state?.params['id'];
 });
+
+export const getSearchedValue = createSelector(getRouterState, (router) => {
+  return router?.state?.queryParams['search'];
+});
+
+export const getFilteredValue = createSelector(getRouterState, (router) => {
+  return router?.state?.queryParams['filter'];
+});
